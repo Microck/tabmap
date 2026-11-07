@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.zip
+checksums.txt
+.DS_Store
+*.log
+.env*
+*.pem
+*.key
+verification-private/

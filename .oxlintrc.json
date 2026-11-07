@@ -1,0 +1,9 @@
+{
+  "categories": { "correctness": "error" },
+  "rules": {
+    "eslint/complexity": ["warn", { "max": 20 }],
+    "no-debugger": "error",
+    "no-eval": "error",
+    "no-explicit-any": "error"
+  }
+}

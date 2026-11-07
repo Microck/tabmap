@@ -1,0 +1,22 @@
+{
+  "name": "tabmap",
+  "version": "0.1.0",
+  "description": "group browser tabs with codex or an openai-compatible model, with editable previews and incremental regrouping.",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/Microck/tabmap.git" },
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bun run build.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint src native",
+    "test:core": "bun test src/shared.test.ts"
+  },
+  "devDependencies": {
+    "@types/chrome": "latest",
+    "@types/node": "latest",
+    "@types/bun": "latest",
+    "typescript": "latest",
+    "oxlint": "latest"
+  }
+}

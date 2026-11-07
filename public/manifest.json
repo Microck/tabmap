@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzCYROpgS7g77Pt7X/du71ZCuYHF/kHu5zKXv/dwRBTkYJmK7dS82Ccs8rsr8b86153p7e9j3Dwt3vRmZTkjC8o7Ka7OELnfK/bCA40kE7uZ4ZAt+qWetpKdtEuA07OBXnKkvUhQ7UDQPF3cNw36b4O7qaZbap+HikGrD/+obJtDerM0sg9WLsjEKEMQLaZ2QXQLGeA8z7OR1hSD/Yh/VWsOMs8i126cVoY06bamlWUjVq7a9x6MYst+jh8bHTp/UywKsWK3S9EezvtAddpLj4POFvs0iom1+dfWJInMKKVgCJg33Wa+FPhNevnhQt6Aykg2K6IvB2UR2rapWLYIj2wIDAQAB",
+  "name": "Tabmap",
+  "version": "0.1.0",
+  "description": "Preview and organize related tabs with your Codex login or an OpenAI-compatible model.",
+  "minimum_chrome_version": "120",
+  "permissions": ["tabs", "tabGroups", "storage", "sidePanel", "nativeMessaging"],
+  "optional_host_permissions": ["https://*/*", "http://localhost/*", "http://127.0.0.1/*", "http://[::1]/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "icons": { "16": "icons/icon-16.png", "32": "icons/icon-32.png", "48": "icons/icon-48.png", "128": "icons/icon-128.png" },
+  "action": {
+    "default_title": "Tabmap",
+    "default_icon": { "16": "icons/icon-16.png", "32": "icons/icon-32.png", "48": "icons/icon-48.png", "128": "icons/icon-128.png" }
+  },
+  "side_panel": { "default_path": "panel.html" },
+  "incognito": "not_allowed",
+  "content_security_policy": { "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'" }
+}
