@@ -22,7 +22,7 @@ openai-compatible api. pinned tabs and existing group members stay in place.
 `Regroup new tabs` checks additions without reclassifying everything you already
 checked.
 
-[download](https://github.com/Microck/tabmap/releases/latest/download/tabmap.zip) | [privacy](https://github.com/Microck/tabmap/blob/main/docs/privacy.md) | [verification](https://github.com/Microck/tabmap/blob/main/docs/verification.md)
+[download](https://github.com/Microck/tabmap/releases/download/v0.1.0/tabmap-0.1.0.zip) | [privacy](https://github.com/Microck/tabmap/blob/main/docs/privacy.md) | [verification](https://github.com/Microck/tabmap/blob/main/docs/verification.md)
 
 <p align="center">
   <picture>
@@ -38,17 +38,20 @@ checked.
 use a current desktop version of chrome, chromium or edge. the release is an
 unpacked extension, not a chrome web store install.
 
-1. [download tabmap.zip](https://github.com/Microck/tabmap/releases/latest/download/tabmap.zip) and extract it to a permanent folder.
+1. [download tabmap-0.1.0.zip](https://github.com/Microck/tabmap/releases/download/v0.1.0/tabmap-0.1.0.zip) and extract it to a permanent folder.
 2. open `chrome://extensions` or `edge://extensions` and turn on `Developer mode`.
-3. choose `Load unpacked` and select the extracted `extension` folder.
+3. choose `Load unpacked` and select the extracted folder containing `manifest.json`.
 4. pin tabmap to the toolbar and open it.
 
 keep the extracted folder in place. moving it breaks the installation. after
 replacing the files with an update, click reload on the extension's card and
 reopen its panel.
 
-[checksums.txt](https://github.com/Microck/tabmap/releases/latest/download/checksums.txt)
-contains the zip's sha-256 checksum. building from source is optional.
+the zip contains only the extension and its licenses, with `manifest.json` at the
+root. the optional codex connector is a separate download.
+
+[checksums.txt](https://github.com/Microck/tabmap/releases/download/v0.1.0/checksums.txt)
+contains both zips' sha-256 checksums. building from source is optional.
 
 ## connect a provider
 
@@ -58,10 +61,11 @@ requires node.js 22 or later and [codex cli](https://developers.openai.com/codex
 the connector has its own one-time chatgpt login. it does not copy your coding
 configuration or credentials, and you do not paste an oauth token into tabmap.
 
-from the extracted folder, run:
+[download tabmap-connector-0.1.0.zip](https://github.com/Microck/tabmap/releases/download/v0.1.0/tabmap-connector-0.1.0.zip)
+and extract it to a separate permanent folder. from that folder, run:
 
 ```sh
-node connector/install.js --extension-id dphchnnplpipipcpagehefaienlnjnnj --browser chrome --login
+node install.js --extension-id dphchnnplpipipcpagehefaienlnjnnj --browser chrome --login
 ```
 
 use `--browser edge` or `--browser chromium` for those browsers. on windows,
