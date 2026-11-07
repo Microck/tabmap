@@ -48,6 +48,21 @@ and privacy disclosures, first-run setup, and the editor's escape/focus behavior
 chromium's platform-font inspection confirmed that the heading used bundled
 geist rather than a fallback font.
 
+the sidebar redesign was exercised against an isolated loopback api fixture:
+settings save, direct connector download visibility, keyboard settings disclosure,
+rename, move, merge, apply, exact undo, incremental checks, cancellation and an
+http 401 response. an existing-group addition preserved its four original members
+through apply and undo. setup hides inactive grouping controls until a model is
+selected, while retaining the privacy disclosure. the sticky apply area remained
+visible at 320 by 700 pixels. no production permissions were added.
+
+the reduced-copy sidebar keeps the selected model and group counts inline.
+hostname subtitles and persistent helper captions were removed from the visible
+preview; sanitized urls remain in hover titles and hostnames remain available to
+screen readers. a fresh fixture check covered rename, merge, move-dialog escape
+and focus restoration, apply, exact undo, and the pre-apply confirmation at
+320, 360 and 480 pixels in both themes.
+
 the selected tabset logo was checked in both themes at 320 and 360 pixels.
 chrome's registered 48-pixel icon matched the packaged png. the original
 extension key and id are preserved. the panel uses the approved svg as a

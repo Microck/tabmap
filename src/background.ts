@@ -4,7 +4,7 @@ import { groupTabs, listModels } from "./providers";
 interface SnapshotTab { id: number; url: string; title: string; pinned: boolean; groupId: number; index: number }
 interface Snapshot { windowId: number; tabs: SnapshotTab[] }
 interface Undo { before: Snapshot; after: Snapshot; addedTabIds: number[] }
-let state: AppState = { settings: DEFAULT_SETTINGS, grouping: DEFAULT_GROUPING, models: [], preview: null, busy: false, status: "Ready", error: null, canUndo: false, checkedTabs: {} };
+let state: AppState = { settings: DEFAULT_SETTINGS, grouping: DEFAULT_GROUPING, models: [], preview: null, busy: false, status: "", error: null, canUndo: false, checkedTabs: {} };
 let previewSnapshot: Snapshot | null = null;
 let undo: Undo | null = null;
 let controller: AbortController | null = null;
@@ -195,7 +195,7 @@ async function generate(windowId: number, signal: AbortSignal, incremental?: { d
   state.checkedTabs[String(windowId)] = [...new Set([...(checkpoints[String(windowId)] ?? []), ...tabs.map(tab => tab.id)])];
   previewSnapshot = before;
   state.preview = { windowId, tabs: combinedTabs, targets, plan };
-  state.status = plan.groups.length ? "Preview ready. No tabs changed." : "No related groups were found. Your tabs are unchanged.";
+  state.status = plan.groups.length ? "No tabs changed." : "No related groups were found. Your tabs are unchanged.";
 }
 
 async function saveRecovery(saved: Undo) {

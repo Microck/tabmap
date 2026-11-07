@@ -10,52 +10,58 @@
 </head>
 <body>
   <main>
-    <header>
-      <h1><span class="brand-mark" aria-hidden="true"></span>Tabmap</h1>
-      <p id="provider-summary"></p>
-    </header>
-    <details id="settings-details">
-      <summary>Settings</summary>
-      <form id="settings-form">
-        <fieldset id="settings-fields" disabled>
-          <label for="provider">Provider</label>
-          <select id="provider"><option value="codex">Codex connector</option><option value="api">OpenAI-compatible API</option></select>
-          <div id="codex-fields" class="stack">
-            <label for="codex-model">Model</label>
-            <select id="codex-model"><option value="">Choose a model</option></select>
-            <details>
-              <summary>Set up Codex</summary>
-              <ol>
-                <li>Install Codex and Node.js 22 or later.</li>
-                <li>Run this from the supplied connector directory:</li>
-              </ol>
-              <pre><code id="install-command"></code></pre>
-              <p>Extension ID: <code id="extension-id"></code></p>
-              <p>Complete the connector's separate login, then load models. Your coding configuration is not copied. Codex runs inference remotely.</p>
-            </details>
-          </div>
-          <div id="api-fields" class="stack" hidden>
-            <label for="endpoint">API base URL</label>
-            <input id="endpoint" type="url" placeholder="https://api.example.com/v1" autocomplete="off" spellcheck="false" aria-describedby="endpoint-help">
-            <p id="endpoint-help">Use HTTPS or loopback HTTP. Saving requests access to this host.</p>
-            <label for="api-key">API key</label>
-            <input id="api-key" type="password" autocomplete="off" spellcheck="false" aria-describedby="key-help">
-            <p id="key-help">Stored unencrypted on this device, never synced. Clear this field and save to remove it.</p>
-            <label for="api-model">Model ID</label>
-            <input id="api-model" type="text" list="api-models" autocomplete="off" spellcheck="false">
-            <datalist id="api-models"></datalist>
-          </div>
-          <div class="actions"><button type="submit">Save settings</button><button id="load-models" type="button">Load models</button></div>
-          <p id="settings-hint"></p>
-        </fieldset>
-      </form>
-    </details>
+    <div class="panel-header">
+      <header>
+        <h1><span class="brand-mark" aria-hidden="true"></span>Tabmap</h1>
+        <p id="provider-summary"></p>
+      </header>
+      <details id="settings-details">
+        <summary aria-label="Settings" title="Settings">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h6m4 0h6M4 17h10m4 0h2"/><circle cx="12" cy="7" r="2"/><circle cx="16" cy="17" r="2"/></svg>
+        </summary>
+        <form id="settings-form">
+          <h2>Settings</h2>
+          <fieldset id="settings-fields" disabled>
+            <label for="provider">Provider</label>
+            <select id="provider"><option value="codex">Codex connector</option><option value="api">OpenAI-compatible API</option></select>
+            <div id="codex-fields" class="stack">
+              <label for="codex-model">Model</label>
+              <select id="codex-model"><option value="">Choose a model</option></select>
+              <a class="connector-download" href="https://github.com/Microck/tabmap/releases/download/v0.1.1/tabmap-connector-0.1.1.zip" target="_blank" rel="noreferrer">Download Codex connector</a>
+              <details class="setup-details">
+                <summary>Installation steps</summary>
+                <ol>
+                  <li>Install Codex and Node.js 22 or later.</li>
+                  <li>Extract the connector ZIP, then run this from that folder:</li>
+                </ol>
+                <pre><code id="install-command"></code></pre>
+                <p>Extension ID: <code id="extension-id"></code></p>
+                <p>Complete the connector's separate login, then load models. Your coding configuration is not copied. Codex runs inference remotely.</p>
+              </details>
+            </div>
+            <div id="api-fields" class="stack" hidden>
+              <label for="endpoint">API base URL</label>
+              <input id="endpoint" type="url" placeholder="https://api.example.com/v1" autocomplete="off" spellcheck="false" aria-describedby="endpoint-help">
+              <p id="endpoint-help">Use HTTPS or loopback HTTP. Saving requests access to this host.</p>
+              <label for="api-key">API key</label>
+              <input id="api-key" type="password" autocomplete="off" spellcheck="false" aria-describedby="key-help">
+              <p id="key-help">Stored unencrypted on this device, never synced. Clear this field and save to remove it.</p>
+              <label for="api-model">Model ID</label>
+              <input id="api-model" type="text" list="api-models" autocomplete="off" spellcheck="false">
+              <datalist id="api-models"></datalist>
+            </div>
+            <div class="actions"><button type="submit">Save settings</button><button id="load-models" type="button">Load models</button></div>
+            <p id="settings-hint"></p>
+          </fieldset>
+        </form>
+      </details>
+    </div>
     <section class="grouping-section" aria-labelledby="preview-heading">
       <h2 id="preview-heading" class="sr-only">Grouping</h2>
-      <form id="grouping-form">
+      <form id="grouping-form" hidden>
         <fieldset id="grouping-fields" disabled>
           <fieldset class="detail-options">
-            <legend>Group detail</legend>
+            <legend class="sr-only">Group detail</legend>
             <label><input type="radio" name="detail" value="broad">Broad</label>
             <label><input type="radio" name="detail" value="balanced" checked>Balanced</label>
             <label><input type="radio" name="detail" value="detailed">Detailed</label>
@@ -67,12 +73,11 @@
           <p id="grouping-notice" hidden>Unsaved grouping preferences.</p>
           <div class="generation-actions">
             <button id="preview" type="submit" aria-describedby="disclosure" disabled>Generate preview</button>
-            <div class="secondary-actions"><button id="regroup" type="button" aria-describedby="disclosure regroup-help" disabled>Regroup new tabs</button><button id="undo" type="button" disabled>Undo</button></div>
+            <div class="secondary-actions"><button id="regroup" type="button" aria-describedby="disclosure regroup-help" title="Check previously unchecked tabs in this window." disabled>Regroup new tabs</button><button id="undo" type="button" disabled>Undo</button></div>
           </div>
-          <p id="regroup-help">Checks new tabs this session.</p>
+          <p id="regroup-help" class="sr-only">Checks new tabs this session.</p>
         </fieldset>
       </form>
-      <p id="model-notice">Choose a model in Settings.</p>
       <details class="privacy-details">
         <summary>Shares titles and URLs</summary>
         <p id="disclosure">Only eligible tabs in this window are sent to your provider. URLs exclude credentials, query strings and fragments. Existing group names and member counts are also sent. Existing members' titles and URLs, page contents and incognito tabs are not sent. Pinned tabs and internal pages are excluded. Existing members stay grouped.</p>
@@ -83,11 +88,12 @@
       <p id="error" role="alert" aria-atomic="true"></p>
       <button id="cancel" type="button" hidden>Cancel</button>
     </div>
-    <section class="review-section" aria-labelledby="plan-heading">
-      <div class="review-heading"><h2 id="plan-heading" tabindex="-1">Preview</h2><p id="plan-summary">No preview yet.</p></div>
+    <section id="review-section" class="review-section" aria-labelledby="plan-heading" hidden>
+      <div class="review-heading"><h2 id="plan-heading" tabindex="-1">Preview</h2><p id="plan-summary"></p></div>
+      <p id="preview-empty">No preview yet.</p>
       <form id="plan-form">
         <fieldset id="plan-fields" disabled><div id="groups"></div><div id="ungrouped"></div></fieldset>
-        <button id="apply" type="submit" disabled>Apply groups</button>
+        <div class="apply-bar"><button id="apply" type="submit" disabled>Apply groups</button></div>
       </form>
     </section>
   </main>

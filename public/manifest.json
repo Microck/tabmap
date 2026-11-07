@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzCYROpgS7g77Pt7X/du71ZCuYHF/kHu5zKXv/dwRBTkYJmK7dS82Ccs8rsr8b86153p7e9j3Dwt3vRmZTkjC8o7Ka7OELnfK/bCA40kE7uZ4ZAt+qWetpKdtEuA07OBXnKkvUhQ7UDQPF3cNw36b4O7qaZbap+HikGrD/+obJtDerM0sg9WLsjEKEMQLaZ2QXQLGeA8z7OR1hSD/Yh/VWsOMs8i126cVoY06bamlWUjVq7a9x6MYst+jh8bHTp/UywKsWK3S9EezvtAddpLj4POFvs0iom1+dfWJInMKKVgCJg33Wa+FPhNevnhQt6Aykg2K6IvB2UR2rapWLYIj2wIDAQAB",
   "name": "Tabmap",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Preview and organize related tabs with your Codex login or an OpenAI-compatible model.",
   "minimum_chrome_version": "120",
   "permissions": ["tabs", "tabGroups", "storage", "sidePanel", "nativeMessaging"],

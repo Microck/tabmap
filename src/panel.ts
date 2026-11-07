@@ -107,10 +107,11 @@ function tabList(ids: number[], tabs: Map<number, TabInput>): HTMLUListElement {
     const title = document.createElement("span");
     title.textContent = tab.title || "Untitled tab";
     const host = document.createElement("span");
-    host.className = "tab-host";
-    host.textContent = new URL(tab.url).host;
+    host.className = "sr-only";
+    host.textContent = ` (${new URL(tab.url).host})`;
     const text = document.createElement("span");
     text.className = "tab-text";
+    text.title = tab.url;
     text.append(title, host);
     const move = document.createElement("button");
     move.type = "button";
@@ -144,8 +145,9 @@ function renderDraft(): void {
   ungrouped.replaceChildren();
   const summary = element("plan-summary");
   const preview = currentPreview();
+  element("preview-empty").hidden = Boolean(draft && preview);
   if (!draft || !preview) {
-    summary.textContent = "Generate a preview first.";
+    summary.textContent = "";
     updateControls();
     return;
   }
@@ -156,16 +158,19 @@ function renderDraft(): void {
     container.className = "group";
     container.dataset.groupKey = String(group.key);
     const includeLabel = document.createElement("label");
+    includeLabel.className = "group-include";
     const include = document.createElement("input");
     include.type = "checkbox";
     include.checked = group.included;
     include.setAttribute("aria-label", `Include ${group.name}`);
     const includeText = document.createElement("span");
+    includeText.className = "group-count";
     includeText.textContent = group.targetId === null
-      ? `${group.tabIds.length} new tabs`
-      : `${group.tabIds.length} ${group.tabIds.length === 1 ? "addition" : "additions"}`;
-    includeLabel.append(include, includeText);
+      ? `${group.tabIds.length} tabs`
+      : `${group.tabIds.length} added`;
+    includeLabel.append(include);
     const nameLabel = document.createElement("label");
+    nameLabel.className = "sr-only";
     nameLabel.htmlFor = `group-name-${group.key}`;
     nameLabel.textContent = group.targetId === null ? "Group name" : "Existing group";
     const name = document.createElement("input");
@@ -193,15 +198,21 @@ function renderDraft(): void {
     merge.setAttribute("aria-label", `Merge ${group.name}`);
     merge.disabled = draft.groups.length < 2;
     merge.addEventListener("click", () => openEditor({ kind: "merge", groupKey: group.key }));
-    container.append(includeLabel, nameLabel, name);
+    const heading = document.createElement("div");
+    heading.className = "group-heading";
+    heading.append(includeLabel, nameLabel, name, includeText, merge);
+    container.append(heading);
     if (group.targetId !== null) {
       const prior = document.createElement("p");
       const target = preview.targets.find(target => target.id === group.targetId);
-      prior.className = "group-context";
+      prior.id = `group-existing-${group.key}`;
+      prior.className = "sr-only";
       prior.textContent = `${target!.tabCount} existing members stay grouped.`;
+      name.setAttribute("aria-describedby", prior.id);
+      name.title = prior.textContent;
       container.append(prior);
     }
-    container.append(merge, tabList(group.tabIds, tabs));
+    container.append(tabList(group.tabIds, tabs));
     groups.append(container);
   }
   if (draft.ungrouped.length) {
@@ -319,6 +330,8 @@ function updateControls(): void {
   const unavailable = !state || busy;
   const stale = dirty || groupingDirty;
   const modelMissing = !state?.settings.model;
+  groupingForm.hidden = modelMissing;
+  element("review-section").hidden = modelMissing && !currentPreview();
   settingsFields.disabled = unavailable;
   groupingFields.disabled = unavailable;
   planFields.disabled = unavailable || stale;
@@ -335,10 +348,6 @@ function updateControls(): void {
   element("settings-hint").textContent = dirty
     ? "Save connection changes first."
     : "";
-  element("model-notice").hidden = !modelMissing && !dirty;
-  element("model-notice").textContent = dirty
-    ? "Save connection changes first."
-    : "Choose a model in Settings.";
 }
 
 function render(next: AppState): void {
@@ -359,9 +368,10 @@ function render(next: AppState): void {
   }
   updateProviderFields();
   if (first && !next.settings.model) element<HTMLDetailsElement>("settings-details").open = true;
-  status.textContent = next.status || (next.busy ? "Working…" : "Ready");
+  status.textContent = next.status || (next.busy ? "Working…" : "");
   showError(next.error || "");
-  element("provider-summary").textContent = next.settings.model || "No model selected";
+  element("provider-summary").textContent = next.settings.model;
+  element("provider-summary").title = next.settings.model;
   renderPreview(currentPreview());
   updateControls();
 }

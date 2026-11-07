@@ -6,7 +6,7 @@
   <h1>tabmap</h1>
   <p>group your browser tabs with codex or an openai-compatible model.</p>
   <p>
-    <a href="https://github.com/Microck/tabmap/releases/latest"><picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/badge/release-0.1.0.svg?variant=secondary&amp;size=xs&amp;logo=false&amp;mode=dark"><img src="https://shieldcn.dev/badge/release-0.1.0.svg?variant=secondary&amp;size=xs&amp;logo=false&amp;mode=light" alt="release 0.1.0"></picture></a>
+    <a href="https://github.com/Microck/tabmap/releases/latest"><picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/badge/release-0.1.1.svg?variant=secondary&amp;size=xs&amp;logo=false&amp;mode=dark"><img src="https://shieldcn.dev/badge/release-0.1.1.svg?variant=secondary&amp;size=xs&amp;logo=false&amp;mode=light" alt="release 0.1.1"></picture></a>
     <a href="https://github.com/Microck/tabmap/blob/main/LICENSE"><picture><source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/badge/license-MIT.svg?variant=secondary&amp;size=xs&amp;logo=false&amp;mode=dark"><img src="https://shieldcn.dev/badge/license-MIT.svg?variant=secondary&amp;size=xs&amp;logo=false&amp;mode=light" alt="mit license"></picture></a>
   </p>
 </div>
@@ -22,7 +22,14 @@ openai-compatible api. pinned tabs and existing group members stay in place.
 `Regroup new tabs` checks additions without reclassifying everything you already
 checked.
 
-[download](https://github.com/Microck/tabmap/releases/download/v0.1.0/tabmap-0.1.0.zip) | [privacy](https://github.com/Microck/tabmap/blob/main/docs/privacy.md) | [verification](https://github.com/Microck/tabmap/blob/main/docs/verification.md)
+[download](https://github.com/Microck/tabmap/releases/download/v0.1.1/tabmap-0.1.1.zip) | [privacy](https://github.com/Microck/tabmap/blob/main/docs/privacy.md) | [verification](https://github.com/Microck/tabmap/blob/main/docs/verification.md)
+
+<p align="center">
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset=".github/assets/tabmap-showcase.png">
+    <img src=".github/assets/tabmap-showcase.gif" width="960" alt="illustration of broad, balanced and detailed tab grouping">
+  </picture>
+</p>
 
 <p align="center">
   <picture>
@@ -38,7 +45,7 @@ checked.
 use a current desktop version of chrome, chromium or edge. the release is an
 unpacked extension, not a chrome web store install.
 
-1. [download tabmap-0.1.0.zip](https://github.com/Microck/tabmap/releases/download/v0.1.0/tabmap-0.1.0.zip) and extract it to a permanent folder.
+1. [download tabmap-0.1.1.zip](https://github.com/Microck/tabmap/releases/download/v0.1.1/tabmap-0.1.1.zip) and extract it to a permanent folder.
 2. open `chrome://extensions` or `edge://extensions` and turn on `Developer mode`.
 3. choose `Load unpacked` and select the extracted folder containing `manifest.json`.
 4. pin tabmap to the toolbar and open it.
@@ -50,7 +57,7 @@ reopen its panel.
 the zip contains only the extension and its licenses, with `manifest.json` at the
 root. the optional codex connector is a separate download.
 
-[checksums.txt](https://github.com/Microck/tabmap/releases/download/v0.1.0/checksums.txt)
+[checksums.txt](https://github.com/Microck/tabmap/releases/download/v0.1.1/checksums.txt)
 contains both zips' sha-256 checksums. building from source is optional.
 
 ## connect a provider
@@ -61,7 +68,7 @@ requires node.js 22 or later and [codex cli](https://developers.openai.com/codex
 the connector has its own one-time chatgpt login. it does not copy your coding
 configuration or credentials, and you do not paste an oauth token into tabmap.
 
-[download tabmap-connector-0.1.0.zip](https://github.com/Microck/tabmap/releases/download/v0.1.0/tabmap-connector-0.1.0.zip)
+[download tabmap-connector-0.1.1.zip](https://github.com/Microck/tabmap/releases/download/v0.1.1/tabmap-connector-0.1.1.zip)
 and extract it to a separate permanent folder. from that folder, run:
 
 ```sh

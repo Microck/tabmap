@@ -1,6 +1,6 @@
 {
   "name": "tabmap",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "group browser tabs with codex or an openai-compatible model, with editable previews and incremental regrouping.",
   "license": "MIT",
   "repository": { "type": "git", "url": "git+https://github.com/Microck/tabmap.git" },
