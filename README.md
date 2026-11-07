@@ -31,14 +31,6 @@ checked.
   </picture>
 </p>
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Microck/tabmap/main/.github/assets/panel-dark.png">
-    <img src="https://raw.githubusercontent.com/Microck/tabmap/main/.github/assets/panel-light.png" width="360" alt="tabmap showing an editable grouping preview before applying it">
-  </picture>
-</p>
-
-<p align="center"><sub>sample tabs, local response fixture.</sub></p>
 
 ## install
 
@@ -59,6 +51,13 @@ root. the optional codex connector is a separate download.
 
 [checksums.txt](https://github.com/Microck/tabmap/releases/download/v0.1.1/checksums.txt)
 contains both zips' sha-256 checksums. building from source is optional.
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Microck/tabmap/main/.github/assets/panel-dark.png">
+    <img src="https://raw.githubusercontent.com/Microck/tabmap/main/.github/assets/panel-light.png" width="360" alt="tabmap showing an editable grouping preview before applying it">
+  </picture>
+</p>
 
 ## connect a provider
 
@@ -140,27 +139,6 @@ changing detail or instructions for regroup affects only the new tabs. successfu
 classification saves those preferences. a check with no new tabs leaves the draft
 and saved preferences unchanged.
 
-## privacy and limits
-
-tabmap sends eligible tab titles and sanitized urls to your chosen provider,
-plus grouping preferences and destination group names and member counts. urls
-lose credentials, queries and fragments, but titles and paths may still contain
-private information. existing members' titles and urls are not resubmitted.
-
-it does not read page contents, cookies, browsing history or incognito tabs.
-there is no developer relay or analytics. read the [privacy details](https://github.com/Microck/tabmap/blob/main/docs/privacy.md)
-before using it with sensitive tabs.
-
-- only ungrouped, unpinned web tabs in the current window are eligible.
-- a check accepts up to 400 tabs and 400 named destinations. use another window above those limits.
-- the model can leave tabs ungrouped or make questionable assignments. inspect the preview.
-- two or more submitted tabs use two model calls. a single tab with a destination uses one; a lone tab without a destination needs none.
-- tabs changing after preview make it stale. generate another preview instead of applying an old plan.
-- undo refuses to overwrite later layout changes. browser mutations are not transactional; inspect recovery status after a partial failure.
-
-large mixed-topic windows can take over a minute and need a capable model. tabmap
-never silently switches your provider or model. testing used linux arm64 and
-chromium; macos, windows, edge and older chromium builds remain unverified.
 
 ## troubleshooting
 
